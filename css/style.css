@@ -1,0 +1,76 @@
+* {
+    font-family: "Exo", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+body {
+    background-color: #161616 !important;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+body * {
+    color: white;
+}
+
+
+.header-index {
+    position: relative;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white; /* Asegura que el texto sea visible */
+}
+
+.header-index::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../img/fondoM&M.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.9; /* Ajusta el nivel de transparencia de la imagen */
+    
+    /* Aplicar un degradado de transparencia */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    
+    z-index: -1; /* Asegura que la imagen esté detrás del contenido */
+}
+
+  .navbar {
+    align-items: flex-start !important;
+    --bs-navbar-padding-y: 1.5rem !important;
+  }
+
+
+  .navbar-expand-lg {
+    justify-content: flex-start !important;
+
+  }
+
+  .logo {
+    width: 7vw;
+    height: 7vh;
+    margin-left: 1rem;
+  }
+
+  .titulo-index {
+    font-size: 3vw;
+    font-weight: bold;
+    text-shadow: 6px 6px 0px red;
+  }
+
+  .btn {
+    --bs-btn-font-size: 1vw !important;
+  }
