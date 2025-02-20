@@ -12,8 +12,20 @@ body {
     padding: 0;
 }
 
+.img-fluid{
+  height: 75px;
+}
+
 body * {
     color: white;
+}
+
+.likes{
+  color: black;
+}
+
+.card-body{
+  height: 100px;
 }
 
 
