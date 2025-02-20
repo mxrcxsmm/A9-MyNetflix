@@ -23,11 +23,11 @@ include_once 'conexion.php';
         <div class="container-fluid d-flex justify-content-between align-items-center div">
             <img src="img/logoM&M.png" alt="Logo de MyNetflix" class="logo">
             <div>
-                <button class="btn btn-outline-light me-2">Iniciar Sesión</button>
-                <button class="btn btn-primary">Registrarse</button>
+                <a href="login.php"><button class="btn btn-outline-light me-2">Iniciar Sesión</button></a>
+                <a href="registro.php"><button class="btn btn-primary">Registrarse</button></a>
             </div>
         </div>
-        <div class="container-fluid text-center mt-3 justify-content-center">
+        <div class="container-fluid text-center mt-3 justify-content-center" id="titulo-index">
             <h1 class="text-light titulo-index">LA MEJOR PLATAFORMA DE STREAMING</h1>
         </div>
     </header>
@@ -39,6 +39,25 @@ include_once 'conexion.php';
             </div>
         </div>
     </div>
+
+    <!-- Mostrar las primeras 5 imágenes de la base de datos en línea -->
+    <div class="container-fluid">
+        <div class="d-flex flex-wrap">
+            <?php
+            $sql = "SELECT id_pelicula, portada FROM pelicula LIMIT 5";
+            $stmt = $pdo->query($sql);
+
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo '<div class="p-2">';
+                echo '<div style="width: 300px; height: 450px;">';
+                echo '<img src="' . htmlspecialchars($row['portada']) . '" style="border-radius: 10px"/>';
+                echo '</div>';
+                echo '</div>';
+            }
+            ?>
+        </div>
+    </div>
+    <a href="./subir.php">Subir imagenes</a>
 
 </body>
 </html>
