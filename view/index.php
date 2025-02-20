@@ -38,7 +38,7 @@ include_once '../proc/proc_index.php';
         <div class="row justify-content-center">
             <?php foreach ($top5 as $pelicula): ?>
                 <div class="col-md-2 text-center">
-                    <img src="img/<?= htmlspecialchars($pelicula['portada']) ?>" alt="<?= htmlspecialchars($pelicula['titulo']) ?>" class="img-fluid">
+                    <img src="../img/<?= htmlspecialchars($pelicula['portada']) ?>" alt="<?= htmlspecialchars($pelicula['titulo']) ?>" class="img-fluid">
                     <p> <?= htmlspecialchars($pelicula['titulo']) ?> </p>
                 </div>
             <?php endforeach; ?>
@@ -51,7 +51,7 @@ include_once '../proc/proc_index.php';
             <?php foreach ($peliculas as $pelicula): ?>
                 <div class="col-md-3 mb-4">
                     <div class="card">
-                        <img src="img/<?= htmlspecialchars($pelicula['portada']) ?>" class="card-img-top" alt="<?= htmlspecialchars($pelicula['titulo']) ?>">
+                        <img src="../img/<?= htmlspecialchars($pelicula['portada']) ?>" class="card-img-top" alt="<?= htmlspecialchars($pelicula['titulo']) ?>">
                         <div class="card-body text-center">
                             <h5 class="card-title"> <?= htmlspecialchars($pelicula['titulo']) ?> </h5>
                         </div>
