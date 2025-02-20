@@ -57,6 +57,14 @@ CREATE TABLE int_personal_pelicula (
     id_pelicula INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE likes_pelicula (
+    id_like INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_usuario INT NOT NULL,
+    id_pelicula INT NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_pelicula) REFERENCES pelicula(id_pelicula) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 -- RELACIONES TABLAS USUARIO/ROL
 ALTER TABLE `netflix`.`usuario` 
@@ -115,3 +123,7 @@ ADD CONSTRAINT `fk_genero`
   REFERENCES `netflix`.`genero` (`id_genero`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+
+
+-- INSERTS
+INSERT INTO 
