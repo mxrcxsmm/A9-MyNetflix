@@ -25,11 +25,11 @@ include_once '../proc/proc_index.php';
         <div class="container-fluid d-flex justify-content-between align-items-center div">
             <img src="../img/logoM&M.png" alt="Logo de MyNetflix" class="logo">
             <div>
-                <button class="btn btn-outline-light me-2">Iniciar Sesión</button>
-                <button class="btn btn-primary">Registrarse</button>
+                <a href="login.php"><button class="btn btn-outline-light me-2">Iniciar Sesión</button></a>
+                <a href="registro.php"><button class="btn btn-primary">Registrarse</button></a>
             </div>
         </div>
-        <div class="container-fluid text-center mt-3 justify-content-center">
+        <div class="container-fluid text-center mt-3 justify-content-center" id="titulo-index">
             <h1 class="text-light titulo-index">LA MEJOR PLATAFORMA DE STREAMING</h1>
         </div>
     </header>

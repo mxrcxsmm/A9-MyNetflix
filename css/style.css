@@ -72,8 +72,8 @@ body * {
   }
 
   .logo {
-    width: 7vw;
-    height: 7vh;
+    width: 130px;
+    height: 70px;
     margin-left: 1rem;
   }
 
@@ -84,5 +84,51 @@ body * {
   }
 
   .btn {
-    --bs-btn-font-size: 1vw !important;
+    --bs-btn-font-size: 18px !important;
   }
+
+  #titulo-index {
+    margin:0 !important;
+  }
+
+  .formRegistro {
+    background-color: rgba(18, 18, 18, 0.8); /* Negro semitransparente */
+    padding: 40px !important;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+
+  .fondoRegistroInicioSesion {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(../img/fondoM&M.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .mt-5 {
+    margin-top: 0 !important;
+  }
+
+  .logo2 {
+    width: 180px;
+    height: 100px;
+  }
+
+  input {
+    background: transparent !important;
+  }
+
+  input * {
+    color:white !important;
+  }
+
+  input::placeholder {
+    color: white !important;
+  }
+  
+.headerRegistro {
+  height:15vh; 
+  margin-left: 5vw; 
+  align-items: center;
+  display: flex;
+}
