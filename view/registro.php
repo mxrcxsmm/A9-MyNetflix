@@ -20,31 +20,33 @@ include '../conexion.php';
   </a>
 </div>
 <div class="container d-flex justify-content-center align-items-center">
-<form class="container formRegistro" style="max-width: 500px;">
+<form action="../proc/proc_register.php" method="post" class="container formRegistro" style="max-width: 500px;">
   <h2 class="mb-4 fw-bold">Registrate</h2>
   <div class="mb-3">
     <input type="text" class="form-control" id="nombre" placeholder="Nombre">
   </div>
-  <br>
+  <p id="nombreError"></p>  
   <div class="mb-3">
     <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
   </div>
-  <br>
+  <p id="apellidosError"></p>
   <div class="mb-3">
     <input type="email" class="form-control" id="email" placeholder="Email">
   </div>
-  <br>
+  <p id="emailError"></p>
   <div class="mb-3">
     <input type="password" class="form-control" id="password" placeholder="Contraseña">
   </div>
-  <br>
+  <p id="passwordError"></p>
   <div class="mb-3">
-    <input type="repetirpassword" class="form-control" id="repetirpassword" placeholder="Repetir contraseña">
+    <input type="password" class="form-control" id="repetirpassword" placeholder="Repetir contraseña">
   </div>
-  <br>
+  <p id="repetirpasswordError"></p>
   <button type="submit" class="btn btn-danger w-100">Registrarse</button>
+  <p id="submitError"></p>
 </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="../validations/registro.js"></script>
 </body>
 </html>

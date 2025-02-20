@@ -1,6 +1,6 @@
 <?php
 
-include 'conexion.php';
+include '../conexion.php';
 
 try {
     // Preparar la consulta SQL para insertar un nuevo usuario
