@@ -125,6 +125,29 @@ ADD CONSTRAINT `fk_genero`
   ON UPDATE NO ACTION;
 
 
+-- INSERTS ROLES
+INSERT INTO rol (id_rol, rol) VALUES
+(1, 'Administrador'),
+(2, 'Usuario');
+
+-- INSERTS USUARIOS
+INSERT INTO usuario (id_usuario, nombre, apellidos, contrasena, correo, id_rol) VALUES
+(1, 'Juan', 'Pérez', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'juan.perez@example.com', 1),
+(2, 'María', 'Gómez', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'maria.gomez@example.com', 2),
+(3, 'Carlos', 'López', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'carlos.lopez@example.com', 2),
+(4, 'Ana', 'Martínez', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'ana.martinez@example.com', 2),
+(5, 'Luis', 'Hernández', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'luis.hernandez@example.com', 2),
+(6, 'Laura', 'Díaz', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'laura.diaz@example.com', 2),
+(7, 'José', 'Rodríguez', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'jose.rodriguez@example.com', 2),
+(8, 'Elena', 'Fernández', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'elena.fernandez@example.com', 2),
+(9, 'Miguel', 'García', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'miguel.garcia@example.com', 2),
+(10, 'Lucía', 'Sánchez', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'lucia.sanchez@example.com', 2),
+(11, 'David', 'Ramírez', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'david.ramirez@example.com', 2),
+(12, 'Sara', 'Torres', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'sara.torres@example.com', 2),
+(13, 'Javier', 'Flores', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'javier.flores@example.com', 2),
+(14, 'Carmen', 'Ruiz', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'carmen.ruiz@example.com', 2),
+(15, 'Raúl', 'Moreno', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'raul.moreno@example.com', 2);
+
 -- INSERTS PELICULAS
 INSERT INTO pelicula (titulo, ano_estreno, duracion, nacionalidad, sinopsis, portada) VALUES
 -- Saga Torrente
