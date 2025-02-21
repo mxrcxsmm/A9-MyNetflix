@@ -14,6 +14,8 @@ include '../conexion.php';
   <title>Document</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="fondoRegistroInicioSesion justify-content-center align-items-center" style="min-height: 100vh;">
@@ -26,19 +28,19 @@ include '../conexion.php';
     <form action="../proc/proc_register.php" method="post" class="container formRegistro" style="max-width: 500px;">
       <h2 class="mb-4 fw-bold">Registrate</h2>
       <div class="mb-3">
-        <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
       </div>
       <p id="nombreError"></p>
       <div class="mb-3">
-        <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
+        <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos">
       </div>
       <p id="apellidosError"></p>
       <div class="mb-3">
-        <input type="email" class="form-control" id="email" placeholder="Email">
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
       </div>
       <p id="emailError"></p>
       <div class="mb-3">
-        <input type="password" class="form-control" id="password" placeholder="Contraseña">
+        <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
       </div>
       <p id="passwordError"></p>
       <div class="mb-3">
