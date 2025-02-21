@@ -8,8 +8,8 @@ try {
         // Obtener los datos del formulario
         $nombre = $_POST['nombre'];
         $apellidos = $_POST['apellidos'];
-        $contrasena = password_hash($_POST['contrasena'], PASSWORD_BCRYPT); // Hashear la contraseña
-        $correo = $_POST['correo'];
+        $contrasena = password_hash($_POST['password'], PASSWORD_BCRYPT); // Hashear la contraseña
+        $correo = $_POST['email'];
         $id_rol = 2; // Rol de usuario normal (no administrador)
 
         // Insertar el usuario en la tabla Usuario

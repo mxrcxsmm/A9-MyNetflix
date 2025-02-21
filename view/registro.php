@@ -26,23 +26,23 @@ include '../conexion.php';
 <form action="../proc/proc_register.php" method="post" class="container formRegistro" style="max-width: 500px;">
   <h2 class="mb-4 fw-bold">Registrate</h2>
   <div class="mb-3">
-    <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
   </div>
   <p id="nombreError" class="error"></p>  
   <div class="mb-3">
-    <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
+    <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos">
   </div>
   <p id="apellidosError" class="error"></p>
   <div class="mb-3">
-    <input type="email" class="form-control" id="email" placeholder="Email">
+    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
   </div>
   <p id="emailError" class="error"></p>
   <div class="mb-3">
-    <input type="password" class="form-control" id="password" placeholder="Contraseña">
+    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
   </div>
   <p id="passwordError" class="error"></p>
   <div class="mb-3">
-    <input type="password" class="form-control" id="repetirpassword" placeholder="Repetir contraseña">
+    <input type="password" class="form-control" id="repetirpassword" name="repetirpassword" placeholder="Repetir contraseña">
   </div>
   <p id="repetirpasswordError" class="error"></p>
   <button type="submit" class="btn btn-danger w-100">Registrarse</button>

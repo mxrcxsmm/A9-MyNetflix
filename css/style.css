@@ -147,19 +147,7 @@ body * {
 }
 
 
-.contenedor {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: transparent;
-  border: 2px solid #FF0000; /* Borde rojo siempre visible */
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
+
 
 .corazon {
   width: 50px;
@@ -173,4 +161,17 @@ body * {
 .contenedor.active .corazon {
   fill: #FF0000; /* Corazón rojo al activarse */
   stroke: #FF0000; /* Mantener el borde rojo cuando está activado */
+}
+
+
+.tamañoImg {
+  height:400px;
+  border-radius: 10px;
+  border: 2px solid white;
+}
+
+.titulo-pelicula {
+  padding-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
 }

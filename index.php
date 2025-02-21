@@ -35,12 +35,13 @@ include_once 'proc/proc_index.php';
     </header>
 
     <div class="container-fluid mt-4">
-        <h2 class="text-center">TOP 5 PELÍCULAS</h2>
+        <h1 class="text-center">TOP 5 PELÍCULAS</h2>
+        <br>
         <div class="row justify-content-center">
             <?php foreach ($top5 as $pelicula): ?>
                 <div class="col-md-2 text-center">
-                    <img src="img/<?= htmlspecialchars($pelicula['portada']) ?>" alt="<?= htmlspecialchars($pelicula['titulo']) ?>" class="img-fluid">
-                    <p> <?= htmlspecialchars($pelicula['titulo']) ?> </p>
+                    <img class="tamañoImg" src="img/<?= htmlspecialchars($pelicula['portada']) ?>" alt="<?= htmlspecialchars($pelicula['titulo']) ?>" class="img-fluid">
+                    <p class="titulo-pelicula"> <?= htmlspecialchars($pelicula['titulo']) ?> </p>
                 </div>
             <?php endforeach; ?>
         </div>
