@@ -136,3 +136,32 @@ body * {
 .form-control {
   color: white !important;
 }
+
+
+.contenedor {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid #FF0000; /* Borde rojo siempre visible */
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.corazon {
+  width: 50px;
+  height: 50px;
+  fill: transparent;
+  stroke: #FF0000; /* Borde del corazón en rojo cuando está desactivado */
+  stroke-width: 2; /* Ancho del borde */
+  transition: fill 0.4s, stroke 0.4s; /* Transición para el borde */
+}
+
+.contenedor.active .corazon {
+  fill: #FF0000; /* Corazón rojo al activarse */
+  stroke: #FF0000; /* Mantener el borde rojo cuando está activado */
+}
