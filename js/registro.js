@@ -5,42 +5,67 @@ document.addEventListener("DOMContentLoaded", function() {
     const passwordInput = document.getElementById("password");
     const repetirpasswordInput = document.getElementById("repetirpassword");
 
-    nombreInput.addEventListener("blur", function() {
+    function validarNombre() {
         if (nombreInput.value === '') {
             document.getElementById("nombreError").textContent = ("El campo nombre es obligatorio.");
+        } else {
+            document.getElementById("nombreError").textContent = "";
         }
-    });
+    }
 
-    apellidosInput.addEventListener("blur", function() {
+    function validarApellidos() {
         if (apellidosInput.value.trim() === '') {
             document.getElementById("apellidosError").textContent = ("El campo apellidos es obligatorio.");
+        } else {
+            document.getElementById("apellidosError").textContent = "";
         }
-    });
+    }
 
-    emailInput.addEventListener("blur", function() {
+    function validarEmail() {
         const email = emailInput.value.trim();
         if (email === '') {
             document.getElementById("emailError").textContent = ("El campo email es obligatorio.");
         } else if (!validateEmail(email)) {
             document.getElementById("emailError").textContent = ("Por favor, introduce un correo electrónico válido.");
+        } else {
+            document.getElementById("emailError").textContent = "";
         }
-    });
+    }
 
-    passwordInput.addEventListener("blur", function() {
-        if (passwordInput === '') {
+    function validarPassword() {
+        if (passwordInput.value === '') {
             document.getElementById("passwordError").textContent = ("El campo contraseña es obligatorio.");
-        } else if (passwordInput.length < 8) {
+        } else if (passwordInput.value.length < 8) {
             document.getElementById("passwordError").textContent = ("La contraseña debe tener al menos 8 caracteres.");
+        } else {
+            document.getElementById("passwordError").textContent = "";
         }
-    });
+    }
 
-    repetirpasswordInput.addEventListener("blur", function() {
-        if (repetirpasswordInput === '') {
-            document.getElementById("repetirpasswordError").textContent("El campo repetir contraseña es obligatorio.");
-        } else if (password !== repetirpassword) {
-            document.getElementById("repetirpasswordError").textContent("Las contraseñas no coinciden.");
+    function validarRepetirPassword() {
+        if (repetirpasswordInput.value === '') {
+            document.getElementById("repetirpasswordError").textContent = ("El campo repetir contraseña es obligatorio.");
+        } else if (passwordInput.value !== repetirpasswordInput.value) {
+            document.getElementById("repetirpasswordError").textContent = ("Las contraseñas no coinciden.");
+        } else {
+            document.getElementById("repetirpasswordError").textContent = "";
         }
-    });
+    }
+
+    nombreInput.onblur = validarNombre;
+    nombreInput.oninput = validarNombre;
+    
+    apellidosInput.onblur = validarApellidos;
+    apellidosInput.oninput = validarApellidos;
+    
+    emailInput.onblur = validarEmail;
+    emailInput.oninput = validarEmail;
+    
+    passwordInput.onblur = validarPassword;
+    passwordInput.oninput = validarPassword;
+    
+    repetirpasswordInput.onblur = validarRepetirPassword;
+    repetirpasswordInput.oninput = validarRepetirPassword;
 
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

@@ -28,25 +28,25 @@ include '../conexion.php';
   <div class="mb-3">
     <input type="text" class="form-control" id="nombre" placeholder="Nombre">
   </div>
-  <p id="nombreError"></p>  
+  <p id="nombreError" class="error"></p>  
   <div class="mb-3">
     <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
   </div>
-  <p id="apellidosError"></p>
+  <p id="apellidosError" class="error"></p>
   <div class="mb-3">
     <input type="email" class="form-control" id="email" placeholder="Email">
   </div>
-  <p id="emailError"></p>
+  <p id="emailError" class="error"></p>
   <div class="mb-3">
     <input type="password" class="form-control" id="password" placeholder="Contraseña">
   </div>
-  <p id="passwordError"></p>
+  <p id="passwordError" class="error"></p>
   <div class="mb-3">
     <input type="password" class="form-control" id="repetirpassword" placeholder="Repetir contraseña">
   </div>
-  <p id="repetirpasswordError"></p>
+  <p id="repetirpasswordError" class="error"></p>
   <button type="submit" class="btn btn-danger w-100">Registrarse</button>
-  <p id="submitError"></p>
+  <p id="submitError" class="error" ></p>
 </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
