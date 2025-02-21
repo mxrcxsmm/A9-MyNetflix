@@ -16,6 +16,11 @@ body {
   height: 75px;
 }
 
+.enlace{
+  color: white;
+  text-decoration: none !important;
+}
+
 body * {
     color: white;
 }
