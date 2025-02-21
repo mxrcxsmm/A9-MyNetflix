@@ -14,7 +14,16 @@ CREATE TABLE Usuario (
     apellidos VARCHAR(255) NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
     correo VARCHAR(255) NOT NULL,
+    estado_cuenta ENUM ('pendiente', 'aprobada') DEFAULT 'pendiente',
     id_rol INT NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE solicitudes_aprobacion (
+    id_solicitud INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT NOT NULL,
+    fecha_solicitud TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    estado ENUM('pendiente', 'aprobada', 'rechazada') DEFAULT 'pendiente',
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE genero (
@@ -131,9 +140,9 @@ INSERT INTO rol (id_rol, rol) VALUES
 (2, 'Usuario');
 
 -- INSERTS USUARIOS
-INSERT INTO usuario (id_usuario, nombre, apellidos, contrasena, correo, id_rol) VALUES
-(1, 'Juan', 'Pérez', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'juan.perez@example.com', 1),
-(2, 'María', 'Gómez', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'maria.gomez@example.com', 2),
+INSERT INTO usuario (id_usuario, nombre, apellidos, contrasena, correo, estado_cuenta, id_rol) VALUES
+(1, 'Juan', 'Pérez', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'admin@fje.edu', 'aprobada', 1),
+(2, 'Marc', 'Martínez', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'marc@fje.edu', 2),
 (3, 'Carlos', 'López', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'carlos.lopez@example.com', 2),
 (4, 'Ana', 'Martínez', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'ana.martinez@example.com', 2),
 (5, 'Luis', 'Hernández', '$2a$12$SCi1wSZlgq1Ln/6DHa5HA.xN9ryaKIvIrthrdjxEQI1NZW3cGOQHe', 'luis.hernandez@example.com', 2),

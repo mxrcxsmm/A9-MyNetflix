@@ -42,7 +42,7 @@ include '../conexion.php';
       </div>
       <br>
       <div class="mb-3">
-        <input type="repetirpassword" class="form-control" id="repetirpassword" placeholder="Repetir contraseña">
+        <input type="password" class="form-control" id="repetirpassword" placeholder="Repetir contraseña">
       </div>
       <br>
       <button type="submit" class="btn btn-danger w-100">Registrarse</button>
