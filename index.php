@@ -1,7 +1,7 @@
 <?php
 
-include_once './conexion.php';
-include_once './proc/proc_index.php';
+include_once 'conexion.php';
+include_once 'proc/proc_index.php';
 
 ?>
 
@@ -23,10 +23,10 @@ include_once './proc/proc_index.php';
     
     <header class="navbar navbar-expand-lg header-index flex-column">
         <div class="container-fluid d-flex justify-content-between align-items-center div">
-            <img src="./img/logoM&M.png" alt="Logo de MyNetflix" class="logo">
+            <img src="img/logoM&M.png" alt="Logo de MyNetflix" class="logo">
             <div>
-                <a href="login.php"><button class="btn btn-outline-light me-2">Iniciar Sesión</button></a>
-                <a href="./view/registro.php"><button class="btn btn-primary">Registrarse</button></a>
+                <a href="view/login.php"><button class="btn btn-outline-light me-2">Iniciar Sesión</button></a>
+                <a href="view/registro.php"><button class="btn btn-primary">Registrarse</button></a>
             </div>
         </div>
         <div class="container-fluid text-center mt-3 justify-content-center" id="titulo-index">
@@ -56,8 +56,12 @@ include_once './proc/proc_index.php';
                         <div class="card-body text-center">
                             <h5 class="card-title"> <?= htmlspecialchars($pelicula['titulo']) ?> </h5>
                             <p class="likes">
-                                <i class="bi bi-hand-thumbs-up"></i> 
                                 <?= htmlspecialchars($pelicula['total_likes']) ?>
+                                <div class="contenedor" onclick="toggleCorazon(this)">
+                                    <svg class="corazon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                    </svg>
+                                </div>
                             </p>
                         </div>
                     </div>
@@ -65,5 +69,6 @@ include_once './proc/proc_index.php';
             <?php endforeach; ?>
         </div>
     </div>
+    <script src="js/like_btn.js"></script>
 </body>
 </html>
