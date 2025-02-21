@@ -17,6 +17,8 @@ include_once 'proc/proc_index.php';
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -71,5 +73,18 @@ include_once 'proc/proc_index.php';
         </div>
     </div>
     <script src="js/like_btn.js"></script>
+
+    <script>
+    // Mostrar SweetAlert2 si el registro fue exitoso
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('success')) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Registro completado',
+            text: 'Tu cuenta está pendiente de aprobación por el administrador.',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+  </script>
 </body>
 </html>

@@ -31,12 +31,39 @@ document.addEventListener("DOMContentLoaded", function() {
 
     emailInput.addEventListener("blur", function() {
         const email = emailInput.value.trim();
-        if (email === '') {
-            document.getElementById("emailError").textContent = "El campo email es obligatorio.";
-        } else if (!validateEmail(email)) {
-            document.getElementById("emailError").textContent = "Por favor, introduce un correo electrónico válido.";
-        } else {
-            document.getElementById("emailError").textContent = ""; // Limpiar el error
+        if (email !== '') {
+            fetch('../proc/proc_register.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        'email': email,
+                        'check_email': true // Indica que solo estamos verificando el correo
+                    })
+                })
+                .then(response => {
+                    // Verificar si la respuesta es una redirección
+                    if (response.redirected) {
+                        // Si se redirige, significa que el correo ya está registrado
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'El correo ya está registrado.',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    } else {
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    if (data && data.error) {
+                        document.getElementById("emailError").textContent = data.error;
+                    } else {
+                        document.getElementById("emailError").textContent = ""; // Limpiar el error
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         }
     });
 
@@ -95,9 +122,29 @@ document.addEventListener("DOMContentLoaded", function() {
             valid = false;
         }
 
-        // Si hay errores, evitar el envío del formulario
+        // Si hay errores, mostrar SweetAlert y evitar el envío del formulario
         if (!valid) {
-            e.preventDefault();
+            e.preventDefault(); // Evitar el envío del formulario
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Tienes que rellenar todos los campos.',
+                confirmButtonText: 'Aceptar'
+            });
         }
+    });
+});
+
+$(document).ready(function() {
+    $('#searchForm').on('submit', function(e) {
+        e.preventDefault(); // Evitar el envío normal del formulario
+        $.ajax({
+            type: 'POST',
+            url: '../proc/proc_peliculas.php', // Cambia esto a la URL que maneje la búsqueda
+            data: $(this).serialize(), // Serializa los datos del formulario
+            success: function(response) {
+                $('#peliculasTable tbody').html(response); // Actualiza la tabla con los resultados
+            }
+        });
     });
 });
