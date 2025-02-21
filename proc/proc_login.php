@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contrasena = $_POST['contrasena'];
 
     // Preparar la consulta para buscar el usuario
-    $sql = "SELECT id_usuario, contrasena FROM Usuario WHERE correo = :correo";
+    $sql = "SELECT id_usuario, contrasena, id_rol FROM usuario WHERE correo = :correo";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':correo', $correo);
     $stmt->execute();
@@ -21,7 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Iniciar sesión
             $_SESSION['id_usuario'] = $usuario['id_usuario'];
             $_SESSION['correo'] = $correo;
-            header("Location: ../view/index.php"); // Redirigir a la página principal
+            $_SESSION['id_rol'] = $usuario['id_rol']; // Guardar el rol en la sesión
+
+            // Redirigir según el rol
+            if ($usuario['id_rol'] == 1) { // Suponiendo que 1 es el rol de administrador
+                header("Location: ../view/admin.php"); // Redirigir a la página de admin
+            } else {
+                header("Location: ../view/cliente.php"); // Redirigir a la página de cliente
+            }
             exit();
         } else {
             $_SESSION['error'] = "Contraseña incorrecta.";
