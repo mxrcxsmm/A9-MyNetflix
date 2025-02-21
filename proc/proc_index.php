@@ -1,7 +1,5 @@
 <?php
 
-include_once '../conexion.php';
-
 // Obtener el TOP 5 de películas más populares
 $sql_top5 = "SELECT p.id_pelicula, p.titulo, p.portada, 
                 (SELECT COUNT(*) FROM likes_pelicula l WHERE l.id_pelicula = p.id_pelicula) AS total_likes
