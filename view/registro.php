@@ -17,40 +17,41 @@ include '../conexion.php';
 </head>
 
 <body class="fondoRegistroInicioSesion justify-content-center align-items-center" style="min-height: 100vh;">
-<div class="container headerRegistro">
-  <a href="index.php">
-    <img src="../img/logoM&M.png" alt="logo" class="logo2">
-  </a>
-</div>
-<div class="container d-flex justify-content-center align-items-center">
-<form action="../proc/proc_register.php" method="post" class="container formRegistro" style="max-width: 500px;">
-  <h2 class="mb-4 fw-bold">Registrate</h2>
-  <div class="mb-3">
-    <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+  <div class="container headerRegistro">
+    <a href="index.php">
+      <img src="../img/logoM&M.png" alt="logo" class="logo2">
+    </a>
   </div>
-  <p id="nombreError"></p>  
-  <div class="mb-3">
-    <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
+  <div class="container d-flex justify-content-center align-items-center">
+    <form action="../proc/proc_register.php" method="post" class="container formRegistro" style="max-width: 500px;">
+      <h2 class="mb-4 fw-bold">Registrate</h2>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+      </div>
+      <p id="nombreError"></p>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
+      </div>
+      <p id="apellidosError"></p>
+      <div class="mb-3">
+        <input type="email" class="form-control" id="email" placeholder="Email">
+      </div>
+      <p id="emailError"></p>
+      <div class="mb-3">
+        <input type="password" class="form-control" id="password" placeholder="Contraseña">
+      </div>
+      <p id="passwordError"></p>
+      <div class="mb-3">
+        <input type="password" class="form-control" id="repetirpassword" placeholder="Repetir contraseña">
+      </div>
+      <p id="repetirpasswordError"></p>
+      <button type="submit" class="btn btn-danger w-100">Registrarse</button>
+      <p id="submitError"></p>
+      <p>¿Ya tienes una cuenta? <a class="enlace" href="login.php">Inicia sesión</a></p>
+    </form>
   </div>
-  <p id="apellidosError"></p>
-  <div class="mb-3">
-    <input type="email" class="form-control" id="email" placeholder="Email">
-  </div>
-  <p id="emailError"></p>
-  <div class="mb-3">
-    <input type="password" class="form-control" id="password" placeholder="Contraseña">
-  </div>
-  <p id="passwordError"></p>
-  <div class="mb-3">
-    <input type="password" class="form-control" id="repetirpassword" placeholder="Repetir contraseña">
-  </div>
-  <p id="repetirpasswordError"></p>
-  <button type="submit" class="btn btn-danger w-100">Registrarse</button>
-  <p id="submitError"></p>
-</form>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="../js/registro.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="../js/registro.js"></script>
 </body>
 
 </html>
