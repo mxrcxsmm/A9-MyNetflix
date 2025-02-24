@@ -42,7 +42,9 @@ include_once 'proc/proc_index.php';
         <div class="row justify-content-center">
             <?php foreach ($top5 as $pelicula): ?>
                 <div class="col-md-2 text-center">
-                    <img class="tamañoImg" src="img/<?= htmlspecialchars($pelicula['portada']) ?>" alt="<?= htmlspecialchars($pelicula['titulo']) ?>" class="img-fluid">
+                    <a href="view/detalle_pelicula.php?id=<?= htmlspecialchars($pelicula['id_pelicula']) ?>">
+                        <img class="tamañoImg" src="img/<?= htmlspecialchars($pelicula['portada']) ?>" alt="<?= htmlspecialchars($pelicula['titulo']) ?>" class="img-fluid">
+                    </a>
                     <p class="titulo-pelicula"> <?= htmlspecialchars($pelicula['titulo']) ?> </p>
                 </div>
             <?php endforeach; ?>

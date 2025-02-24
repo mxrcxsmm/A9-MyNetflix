@@ -1,134 +1,133 @@
 * {
-  font-family: "Exo", serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Exo", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
 body {
-  background-color: #161616 !important;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
+    background-color: #161616 !important;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
-.img-fluid{
-height: 75px;
+.img-fluid {
+    height: 75px;
 }
 
-.enlace{
-color: white;
-text-decoration: none !important;
+.enlace {
+    color: white;
+    text-decoration: none !important;
 }
 
 body * {
-  color: white;
+    color: white;
 }
 
-.likes{
-color: black;
+.likes {
+    color: black;
 }
 
-.card-body{
-height: 100px;
+.card-body {
+    height: 100px;
 }
-
 
 .header-index {
-  position: relative;
-  height: 25vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white; /* Asegura que el texto sea visible */
+    position: relative;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    /* Asegura que el texto sea visible */
 }
 
 .header-index::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url(../img/fondoM&M.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.9; /* Ajusta el nivel de transparencia de la imagen */
-  
-  /* Aplicar un degradado de transparencia */
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-  
-  z-index: -1; /* Asegura que la imagen esté detrás del contenido */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../img/fondoM&M.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+    /* Ajusta el nivel de transparencia de la imagen */
+    /* Aplicar un degradado de transparencia */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    z-index: -1;
+    /* Asegura que la imagen esté detrás del contenido */
 }
 
 .navbar {
-  align-items: flex-start !important;
-  --bs-navbar-padding-y: 1.5rem !important;
+    align-items: flex-start !important;
+    --bs-navbar-padding-y: 1.5rem !important;
 }
 
-
 .navbar-expand-lg {
-  justify-content: flex-start !important;
-
+    justify-content: flex-start !important;
 }
 
 .logo {
-  width: 130px;
-  height: 70px;
-  margin-left: 1rem;
+    width: 130px;
+    height: 70px;
+    margin-left: 1rem;
 }
 
 .titulo-index {
-  font-size: 3vw;
-  font-weight: bold;
-  text-shadow: 6px 6px 0px red;
+    font-size: 3vw;
+    font-weight: bold;
+    text-shadow: 6px 6px 0px red;
 }
 
 .btn {
-  --bs-btn-font-size: 18px !important;
+    --bs-btn-font-size: 18px !important;
 }
 
 #titulo-index {
-  margin:0 !important;
+    margin: 0 !important;
 }
 
 .formRegistro {
-  background-color: rgba(18, 18, 18, 0.8); /* Negro semitransparente */
-  padding: 40px !important;
-  border-radius: 10px;
-  margin-top: 20px;
+    background-color: rgba(18, 18, 18, 0.8);
+    /* Negro semitransparente */
+    padding: 40px !important;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
 .fondoRegistroInicioSesion {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(../img/fondoM&M.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(../img/fondoM&M.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .mt-5 {
-  margin-top: 0 !important;
+    margin-top: 0 !important;
 }
 
 .logo2 {
-  width: 180px;
-  height: 100px;
+    width: 180px;
+    height: 100px;
 }
 
 input {
-  background: transparent !important;
+    background: transparent !important;
 }
 
 input * {
-  color:white !important;
+    color: white !important;
 }
 
 input::placeholder {
-  color: white !important;
+    color: white !important;
 }
 
 .headerRegistro {
@@ -138,40 +137,47 @@ display: flex;
 }
 
 .form-control {
-color: white !important;
+    color: white !important;
 }
 
 .error {
-color: red;
+    color: red;
 }
 
-
-
-
-
 .corazon {
-width: 50px;
-height: 50px;
-fill: transparent;
-stroke: #FF0000; /* Borde del corazón en rojo cuando está desactivado */
-stroke-width: 2; /* Ancho del borde */
-transition: fill 0.4s, stroke 0.4s; /* Transición para el borde */
+    width: 50px;
+    height: 50px;
+    fill: transparent;
+    stroke: #FF0000;
+    /* Borde del corazón en rojo cuando está desactivado */
+    stroke-width: 2;
+    /* Ancho del borde */
+    transition: fill 0.4s, stroke 0.4s;
+    /* Transición para el borde */
 }
 
 .contenedor.active .corazon {
-fill: #FF0000; /* Corazón rojo al activarse */
-stroke: #FF0000; /* Mantener el borde rojo cuando está activado */
+    fill: #FF0000;
+    /* Corazón rojo al activarse */
+    stroke: #FF0000;
+    /* Mantener el borde rojo cuando está activado */
 }
 
-
 .tamañoImg {
-  height:400px;
-  border-radius: 10px;
-  border: 2px solid white;
+    height: 400px;
+    border-radius: 10px;
+    border: 2px solid white;
+    transition: transform 0.3s;
+    /* Transición suave para el zoom */
+}
+
+.tamañoImg:hover {
+    transform: scale(1.05);
+    /* Aumentar el tamaño al pasar el mouse */
 }
 
 .titulo-pelicula {
-  padding-top: 20px;
-  font-size: 20px;
-  font-weight: bold;
+    padding-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
 }
