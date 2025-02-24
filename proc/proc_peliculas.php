@@ -51,7 +51,10 @@ if (isset($_POST['buscar'])) {
     $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
     // Obtener todas las películas
-    $sql = "SELECT p.id_pelicula, p.titulo, p.portada, 
+    $sql = "SELECT p.id_pelicula, p.titulo, p.portada, p.sinopsis, p.ano_estreno, p.nacionalidad,
+                (SELECT GROUP_CONCAT(g.nombre_genero) FROM int_genero_pelicula igp 
+                 JOIN genero g ON igp.id_genero = g.id_genero 
+                 WHERE igp.id_pelicula = p.id_pelicula) AS generos,
                 (SELECT COUNT(*) FROM likes_pelicula l WHERE l.id_pelicula = p.id_pelicula) AS total_likes
             FROM pelicula p
             ORDER BY p.titulo"; // Cambia a ORDER BY total_likes si deseas ordenar por likes
@@ -60,41 +63,40 @@ if (isset($_POST['buscar'])) {
     $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Agregar una nueva película
-if (isset($_POST['agregar'])) {
-    $titulo = $_POST['titulo'];
-    $portada = $_POST['portada']; // Asegúrate de manejar la carga de imágenes adecuadamente
-    $sql = "INSERT INTO pelicula (titulo, portada) VALUES (:titulo, :portada)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':titulo', $titulo);
-    $stmt->bindParam(':portada', $portada);
-    $stmt->execute();
-    header("Location: ../view/peliculas.php"); // Redirigir después de agregar
-    exit();
-}
-
-// Eliminar una película
-if (isset($_POST['eliminar'])) {
-    $id_pelicula = $_POST['id_pelicula'];
-    $sql = "DELETE FROM pelicula WHERE id_pelicula = :id_pelicula";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':id_pelicula', $id_pelicula);
-    $stmt->execute();
-    header("Location: ../view/peliculas.php"); // Redirigir después de eliminar
-    exit();
-}
-
 // Modificar una película
 if (isset($_POST['modificar'])) {
     $id_pelicula = $_POST['id_pelicula'];
     $titulo = $_POST['titulo'];
-    $portada = $_POST['portada']; // Asegúrate de manejar la carga de imágenes adecuadamente
-    $sql = "UPDATE pelicula SET titulo = :titulo, portada = :portada WHERE id_pelicula = :id_pelicula";
+    $portada = $_POST['portada'];
+    $sinopsis = $_POST['sinopsis'];
+    $ano_estreno = $_POST['ano_estreno'];
+    $generos = $_POST['genero']; // Obtener los géneros seleccionados
+
+    // Actualizar la información de la película
+    $sql = "UPDATE pelicula SET titulo = :titulo, portada = :portada, sinopsis = :sinopsis, ano_estreno = :ano_estreno WHERE id_pelicula = :id_pelicula";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':titulo', $titulo);
     $stmt->bindParam(':portada', $portada);
+    $stmt->bindParam(':sinopsis', $sinopsis);
+    $stmt->bindParam(':ano_estreno', $ano_estreno);
     $stmt->bindParam(':id_pelicula', $id_pelicula);
     $stmt->execute();
+
+    // Eliminar géneros existentes para la película
+    $sql_delete = "DELETE FROM int_genero_pelicula WHERE id_pelicula = :id_pelicula";
+    $stmt_delete = $pdo->prepare($sql_delete);
+    $stmt_delete->bindParam(':id_pelicula', $id_pelicula);
+    $stmt_delete->execute();
+
+    // Insertar los nuevos géneros
+    foreach ($generos as $id_genero) {
+        $sql_insert = "INSERT INTO int_genero_pelicula (id_genero, id_pelicula) VALUES (:id_genero, :id_pelicula)";
+        $stmt_insert = $pdo->prepare($sql_insert);
+        $stmt_insert->bindParam(':id_genero', $id_genero);
+        $stmt_insert->bindParam(':id_pelicula', $id_pelicula);
+        $stmt_insert->execute();
+    }
+
     header("Location: ../view/peliculas.php"); // Redirigir después de modificar
     exit();
 }
