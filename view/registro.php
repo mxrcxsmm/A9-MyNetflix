@@ -20,7 +20,7 @@ include '../conexion.php';
 
 <body class="fondoRegistroInicioSesion justify-content-center align-items-center" style="min-height: 100vh;">
 <div class="container headerRegistro">
-  <a href="index.php">
+  <a href="../index.php">
     <img src="../img/logoM&M.png" alt="logo" class="logo2">
   </a>
 </div>

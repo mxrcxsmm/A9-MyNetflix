@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Validaciones al perder el foco
     nombreInput.addEventListener("blur", function() {
         if (nombreInput.value === '') {
-            document.getElementById("nombreError").textContent = "El campo nombre es obligatorio.";
+            document.getElementById("nombreError").textContent = "Por favor, introduce tu nombre.";
         } else {
             document.getElementById("nombreError").textContent = ""; // Limpiar el error
         }
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     apellidosInput.addEventListener("blur", function() {
         if (apellidosInput.value.trim() === '') {
-            document.getElementById("apellidosError").textContent = "El campo apellidos es obligatorio.";
+            document.getElementById("apellidosError").textContent = "Por favor, introduce tus apellidos.";
         } else {
             document.getElementById("apellidosError").textContent = ""; // Limpiar el error
         }
@@ -64,12 +64,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 })
                 .catch(error => console.error('Error:', error));
+        } if(email === '') {
+            document.getElementById("emailError").textContent = "Por favor, introduce tu correo electrónico.";
+        } else {
+            document.getElementById("emailError").textContent = ""; // Limpiar el error
         }
     });
 
     passwordInput.addEventListener("blur", function() {
         if (passwordInput.value === '') {
-            document.getElementById("passwordError").textContent = "El campo contraseña es obligatorio.";
+            document.getElementById("passwordError").textContent = "Por favor, introduce tu contraseña.";
         } else if (passwordInput.value.length < 8) {
             document.getElementById("passwordError").textContent = "La contraseña debe tener al menos 8 caracteres.";
         } else {
@@ -79,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     repetirpasswordInput.addEventListener("blur", function() {
         if (repetirpasswordInput.value === '') {
-            document.getElementById("repetirpasswordError").textContent = "El campo repetir contraseña es obligatorio.";
+            document.getElementById("repetirpasswordError").textContent = "Por favor, repite tu contraseña.";
         } else if (repetirpasswordInput.value !== passwordInput.value) {
             document.getElementById("repetirpasswordError").textContent = "Las contraseñas no coinciden.";
         } else {
