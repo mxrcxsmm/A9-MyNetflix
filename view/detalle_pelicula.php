@@ -11,10 +11,14 @@ if (!isset($_GET['id'])) {
 $id_pelicula = $_GET['id'];
 
 // Obtener la información de la película
-$sql = "SELECT p.titulo, p.portada, p.sinopsis, p.ano_estreno, p.genero, 
+$sql = "SELECT p.titulo, p.portada, p.sinopsis, p.ano_estreno, 
+            GROUP_CONCAT(g.nombre_genero) AS generos,
             (SELECT COUNT(*) FROM likes_pelicula l WHERE l.id_pelicula = p.id_pelicula) AS total_likes
         FROM pelicula p
-        WHERE p.id_pelicula = :id_pelicula";
+        LEFT JOIN int_genero_pelicula igp ON p.id_pelicula = igp.id_pelicula
+        LEFT JOIN genero g ON igp.id_genero = g.id_genero
+        WHERE p.id_pelicula = :id_pelicula
+        GROUP BY p.id_pelicula"; // Agrupar por ID de película para obtener los géneros
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':id_pelicula', $id_pelicula);
 $stmt->execute();
@@ -43,10 +47,10 @@ if (!$pelicula) {
         </div>
         <p><strong>Sinopsis:</strong> <?= htmlspecialchars($pelicula['sinopsis']) ?></p>
         <p><strong>Año de Estreno:</strong> <?= htmlspecialchars($pelicula['ano_estreno']) ?></p>
-        <p><strong>Género:</strong> <?= htmlspecialchars($pelicula['genero']) ?></p>
+        <p><strong>Género:</strong> <?= htmlspecialchars($pelicula['generos']) ?></p>
         <p><strong>Total Likes:</strong> <?= htmlspecialchars($pelicula['total_likes']) ?></p>
         <div class="text-center">
-            <a href="peliculas.php" class="btn btn-primary">Volver a la lista de películas</a>
+            <a href="../index.php" class="btn btn-primary">Volver a la lista de películas</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

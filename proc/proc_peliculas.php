@@ -8,6 +8,35 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     exit();
 }
 
+// Verificar si se ha pasado el ID de la película
+if (isset($_GET['id'])) {
+    $id_pelicula = $_GET['id'];
+
+    // Obtener la información de la película
+    $sql = "SELECT p.titulo, p.portada, p.sinopsis, p.ano_estreno, 
+                GROUP_CONCAT(g.nombre_genero) AS generos,
+                (SELECT COUNT(*) FROM likes_pelicula l WHERE l.id_pelicula = p.id_pelicula) AS total_likes
+            FROM pelicula p
+            LEFT JOIN int_genero_pelicula igp ON p.id_pelicula = igp.id_pelicula
+            LEFT JOIN genero g ON igp.id_genero = g.id_genero
+            WHERE p.id_pelicula = :id_pelicula
+            GROUP BY p.id_pelicula"; // Agrupar por ID de película para obtener los géneros
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id_pelicula', $id_pelicula);
+    $stmt->execute();
+    $pelicula = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Verificar si se encontró la película
+    if (!$pelicula) {
+        header("Location: ../view/peliculas.php"); // Redirigir si no se encuentra la película
+        exit();
+    }
+} else {
+    header("Location: ../view/peliculas.php"); // Redirigir si no se proporciona un ID
+    exit();
+}
+
 // Procesar la búsqueda de películas
 if (isset($_POST['buscar'])) {
     $busqueda = $_POST['busqueda'];
