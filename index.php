@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 include_once 'conexion.php';
 include_once 'proc/proc_index.php';
 
@@ -27,14 +28,31 @@ include_once 'proc/proc_index.php';
         <div class="container-fluid d-flex justify-content-between align-items-center div">
             <img src="img/logoM&M.png" alt="Logo de MyNetflix" class="logo">
             <div>
+            <?php
+                if(!isset($_SESSION['estado_cuenta'])):
+            ?>
                 <a href="view/login.php"><button class="btn btn-outline-light me-2">Iniciar Sesión</button></a>
                 <a href="view/registro.php"><button class="btn btn-primary">Registrarse</button></a>
+            <?php
+                elseif(isset($_SESSION['estado_cuenta'])):
+            ?>
+                <a href="proc/logout.php"><button class="btn btn-danger me-2">Cerrar sesión</button></a>
+            <?php
+                endif;
+            ?>
             </div>
         </div>
         <div class="container-fluid text-center mt-3 justify-content-center" id="titulo-index">
             <h1 class="text-light titulo-index">LA MEJOR PLATAFORMA DE STREAMING</h1>
         </div>
+
     </header>
+
+<?php
+
+if(!isset($_SESSION['estado_cuenta'])):
+
+?>
 
     <div class="container-fluid mt-4">
         <h1 class="text-center">TOP 5 PELÍCULAS</h2>
@@ -53,21 +71,23 @@ include_once 'proc/proc_index.php';
 
     <div class="container mt-5">
         <h2 class="text-center">Todas las Películas</h2>
+        <br>
         <div class="row">
             <?php foreach ($peliculas as $pelicula): ?>
                 <div class="col-md-3 mb-4">
                     <div class="card">
-                        <img src="img/<?= htmlspecialchars($pelicula['portada']) ?>" class="card-img-top" alt="<?= htmlspecialchars($pelicula['titulo']) ?>">
+                        <img class="tamañoImg2" src="img/<?= htmlspecialchars($pelicula['portada']) ?>" class="card-img-top" alt="<?= htmlspecialchars($pelicula['titulo']) ?>">
                         <div class="card-body text-center">
+
                             <h5 class="card-title"> <?= htmlspecialchars($pelicula['titulo']) ?> </h5>
-                            <p class="likes">
+                            <div class="derecha contenedor" onclick="toggleCorazon(this)">
+                                <p class="likes">
                                 <?= htmlspecialchars($pelicula['total_likes']) ?>
-                                <div class="contenedor" onclick="toggleCorazon(this)">
                                     <svg class="corazon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                                     </svg>
-                                </div>
-                            </p>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -88,5 +108,22 @@ include_once 'proc/proc_index.php';
         });
     }
   </script>
+<?php
+elseif (isset($_SESSION['estado_cuenta']) && $_SESSION['estado_cuenta'] == 'pendiente'):
+?>
+
+<div class="divPendiente">
+<form class="formPendiente w-50" action="proc/logout.php">
+    <h1>Has iniciado sesion como <?php echo $_SESSION['nombre'] . " " . $_SESSION['apellidos']; ?></h1>
+    <h3>Tu cuenta está pendiente de ser aprovada por un administrador. Vuelve a intentarlo más tarde</h3>
+
+</form>
+</div>
+
+<?php
+endif;
+
+?>
+
 </body>
 </html>

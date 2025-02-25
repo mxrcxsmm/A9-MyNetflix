@@ -29,7 +29,7 @@ include_once '../conexion.php';
         <label for="contrasena" class="form-label">Contraseña</label>
         <input type="password" class="form-control" id="contrasena" name="contrasena" required>
     </div>
-    <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+    <button type="submit" class="btn btn-danger w-100">Iniciar Sesión</button>
     <?php if (isset($_SESSION['error'])): ?>
         <div class="alert alert-danger mt-3"><?= $_SESSION['error'] ?></div>
         <?php unset($_SESSION['error']); ?>
