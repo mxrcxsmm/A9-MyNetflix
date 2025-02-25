@@ -198,6 +198,14 @@ input::placeholder {
     /* Transición suave para el zoom */
 }
 
+.tamañoImg2 {
+    height: 500px;
+    border-radius: 10px;
+    border: 2px solid white;
+    transition: transform 0.3s;
+
+}
+
 .tamañoImg:hover {
     transform: scale(1.05);
     /* Aumentar el tamaño al pasar el mouse */
