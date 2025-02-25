@@ -22,10 +22,11 @@ $usuarios = $stmt_all->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administración - Usuarios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="fondoPeliculaAdmin">
     <div class="container mt-5">
-        <h2 class="text-center">Administración de Usuarios</h2>
+        <h2 class="catalogo">Administración de Usuarios</h2>
 
         <div class="mb-3 text-end">
             <a href="peliculas.php" class="btn btn-primary">Películas</a>
@@ -53,7 +54,7 @@ $usuarios = $stmt_all->fetchAll(PDO::FETCH_ASSOC);
                             <form action="../proc/proc_admin.php" method="POST" style="display:inline;">
                                 <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">
                                 <?php if ($usuario['estado_cuenta'] == 'pendiente'): ?>
-                                    <button type="submit" name="validar" class="btn btn-success">Validar</button>
+                                    <button type="submit" name="validar" class="btn btn-success">Aprobar</button>
                                 <?php else: ?>
                                     <button type="submit" name="desactivar" class="btn btn-danger">Desactivar</button>
                                 <?php endif; ?>

@@ -13,7 +13,10 @@ $id_pelicula = $_GET['id'];
 // Obtener la información de la película
 $sql = "SELECT p.titulo, p.portada, p.sinopsis, p.ano_estreno, 
             GROUP_CONCAT(g.nombre_genero) AS generos,
-            (SELECT COUNT(*) FROM likes_pelicula l WHERE l.id_pelicula = p.id_pelicula) AS total_likes
+            (SELECT COUNT(*) FROM likes_pelicula l WHERE l.id_pelicula = p.id_pelicula) AS total_likes,
+            (SELECT GROUP_CONCAT(per.nombre_personal, ' ', per.apellidos_personal) FROM int_personal_pelicula ipp 
+             JOIN personal per ON ipp.id_personal = per.id_personal 
+             WHERE ipp.id_pelicula = p.id_pelicula) AS reparto
         FROM pelicula p
         LEFT JOIN int_genero_pelicula igp ON p.id_pelicula = igp.id_pelicula
         LEFT JOIN genero g ON igp.id_genero = g.id_genero
@@ -38,19 +41,43 @@ if (!$pelicula) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($pelicula['titulo']) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="fondoPeliculaAdmin">
     <div class="container mt-5">
-        <h2 class="text-center"><?= htmlspecialchars($pelicula['titulo']) ?></h2>
-        <div class="text-center">
-            <img src="../img/<?= htmlspecialchars($pelicula['portada']) ?>" alt="<?= htmlspecialchars($pelicula['titulo']) ?>" class="img-fluid" style="max-width: 500px;">
-        </div>
-        <p><strong>Sinopsis:</strong> <?= htmlspecialchars($pelicula['sinopsis']) ?></p>
-        <p><strong>Año de Estreno:</strong> <?= htmlspecialchars($pelicula['ano_estreno']) ?></p>
-        <p><strong>Género:</strong> <?= htmlspecialchars($pelicula['generos']) ?></p>
-        <p><strong>Total Likes:</strong> <?= htmlspecialchars($pelicula['total_likes']) ?></p>
-        <div class="text-center">
-            <a href="../index.php" class="btn btn-primary">Volver a la lista de películas</a>
+        <h2 class="tituloPelicula"><?= htmlspecialchars($pelicula['titulo']) ?></h2>
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <img src="../img/<?= htmlspecialchars($pelicula['portada']) ?>" alt="<?= htmlspecialchars($pelicula['titulo']) ?>" class="img-fluid" style="max-width: 100%; height: auto;">
+            </div>
+            <div class="col-md-8">
+                <p class="sinopsis"><strong>Sinopsis:</strong> <?= htmlspecialchars($pelicula['sinopsis']) ?></p>
+                <p><strong>Año de Estreno:</strong> <?= htmlspecialchars($pelicula['ano_estreno']) ?></p>
+                <p><strong>Género:</strong>
+                    <ul class="lista-generos">
+                        <?php 
+                        // Convertir los géneros en un array y mostrarlos como lista
+                        $generos_array = explode(',', htmlspecialchars($pelicula['generos']));
+                        foreach ($generos_array as $genero): ?>
+                            <li><?= trim($genero) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </p>
+                <p><strong>Reparto:</strong>
+                    <ul class="lista-generos">
+                        <?php 
+                        // Convertir el reparto en un array y mostrarlos como lista
+                        $reparto_array = explode(',', htmlspecialchars($pelicula['reparto']));
+                        foreach ($reparto_array as $actor): ?>
+                            <li><?= trim($actor) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </p>
+                <p><strong>Total Likes:</strong> <?= htmlspecialchars($pelicula['total_likes']) ?></p>
+                <div class="btnIndex">
+                    <a href="../index.php" class="btn btn-primary">Volver a la lista de películas</a>
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

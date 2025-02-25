@@ -21,6 +21,14 @@ body {
     text-decoration: none !important;
 }
 
+.catalogo {
+    padding-top: 30px !important;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 5px;
+    text-align: center;
+}
+
 body * {
     color: white;
 }
@@ -111,8 +119,10 @@ body * {
 }
 
 .table-container {
-    margin: 10px;
-    /* Margen alrededor de la tabla */
+    width: calc(100% - 40px) !important;
+    /* Ajusta el ancho del contenedor si es necesario */
+    margin: 20px auto;
+    /* Centrar el contenedor */
 }
 
 .btn-group {
@@ -210,24 +220,56 @@ input::placeholder {
     align-items: center;
 }
 
+.ano {
+    margin-left: 1rem;
+    width: 120px;
+}
+
+.titulo {
+    width: 200px;
+}
+
 
 /* Estilos para la tabla de películas */
 
 .table {
-    width: 100%;
-    /* Hacer que la tabla ocupe el 100% del ancho */
+    width: 100% !important;
+    /* Asegúrate de que la tabla ocupe el 100% del ancho */
     background-color: transparent;
     /* Sin color de fondo */
     border-collapse: collapse;
     /* Colapsar bordes para un mejor aspecto */
+    table-layout: auto;
+    /* Permitir que las columnas se ajusten automáticamente */
+}
+
+.container.mt-5.table-container {
+    margin-left: 20px !important;
+    /* Margen a la izquierda de 20px */
+    width: 100% !important;
+    /* Ocupar el 100% del ancho */
+}
+
+.sinopsis {
+    text-align: justify;
+}
+
+.tituloPelicula {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.btnIndex {
+    text-align: center;
 }
 
 .table th,
 .table td {
     background-color: transparent;
-    /* Sin color de fondo en celdas */
-    border: none;
-    /* Sin bordes en las celdas */
+    padding: 8px;
+    /* Ajustar el padding para que se vea mejor */
+    text-align: left;
+    /* Alinear el texto a la izquierda */
     color: white;
     /* Color de texto blanco para mejor visibilidad */
 }
@@ -247,11 +289,13 @@ input::placeholder {
 
 /* Estilos para la lista de géneros */
 
-ul {
+.lista-generos {
     list-style-type: none;
     /* Quitar los puntos de la lista */
     padding: 0;
     /* Eliminar el padding por defecto */
     margin: 0;
     /* Eliminar el margen por defecto */
+    color: white;
+    /* Color del texto de los géneros */
 }

@@ -23,6 +23,7 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,9 +33,10 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Incluir SweetAlert2 -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body class="fondoPeliculaAdmin">
     <div class="container mt-5 table-container">
-        <h2 class="text-center">Catálogo de Películas</h2>
+        <h2 class="catalogo">Catálogo de Películas</h2>
 
         <?php if (isset($_GET['mensaje'])): ?>
             <div class="alert alert-success" role="alert">
@@ -52,13 +54,13 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
 
-        <form id="searchForm" class="mb-3">
+        <form id="searchForm" class="mb-3" method="POST" action="peliculas.php">
             <div class="input-group">
                 <input type="text" name="titulo" class="form-control" placeholder="Buscar por título...">
                 <input type="text" name="actor" class="form-control" placeholder="Buscar por actor...">
                 <input type="text" name="genero" class="form-control" placeholder="Buscar por género...">
-                <input type="number" name="anio" class="form-control" placeholder="Buscar por año...">
-                <button type="submit" class="btn btn-primary">Buscar</button>
+                <input type="number" name="ano_estreno" class="form-control" placeholder="Buscar por año...">
+                <button type="submit" name="buscar" class="btn btn-primary">Buscar</button>
             </div>
         </form>
 
@@ -66,10 +68,11 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <thead>
                 <tr>
                     <th>Portada</th>
-                    <th>Título</th>
+                    <th class="titulo">Título</th>
                     <th>Sinopsis</th>
                     <th>Nacionalidad</th>
                     <th>Géneros</th>
+                    <th class="ano">Año estreno</th>
                     <th>Likes</th>
                     <th>Acciones</th>
                 </tr>
@@ -83,7 +86,7 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?= htmlspecialchars($pelicula['nacionalidad']) ?></td>
                         <td>
                             <ul>
-                                <?php 
+                                <?php
                                 // Convertir los géneros en un array y mostrarlos como lista
                                 $generos_array = explode(',', htmlspecialchars($pelicula['generos']));
                                 foreach ($generos_array as $genero): ?>
@@ -91,6 +94,7 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <?php endforeach; ?>
                             </ul>
                         </td>
+                        <td><?= htmlspecialchars($pelicula['ano_estreno']) ?></td>
                         <td><?= htmlspecialchars($pelicula['total_likes']) ?></td>
                         <td>
                             <div class="btn-group">
@@ -137,14 +141,15 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 e.preventDefault(); // Evitar el envío normal del formulario
                 $.ajax({
                     type: 'POST',
-                    url: '../proc/proc_peliculas.php',
-                    data: $(this).serialize(),
+                    url: '../proc/proc_peliculas.php', // Cambia esto a la URL que maneje la búsqueda
+                    data: $(this).serialize(), // Serializa los datos del formulario
                     success: function(response) {
-                        $('#peliculasTable tbody').html(response);
+                        $('#peliculasTable tbody').html(response); // Actualiza la tabla con los resultados
                     }
                 });
             });
         });
     </script>
 </body>
-</html> 
+
+</html>
