@@ -25,9 +25,7 @@ body * {
     color: white;
 }
 
-.likes {
-    color: black;
-}
+
 
 .card-body {
     height: 100px;
@@ -145,8 +143,8 @@ display: flex;
 }
 
 .corazon {
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 20px;
     fill: transparent;
     stroke: #FF0000;
     /* Borde del corazón en rojo cuando está desactivado */
@@ -176,8 +174,51 @@ display: flex;
     /* Aumentar el tamaño al pasar el mouse */
 }
 
+.tamañoImg2:hover {
+    transform: scale(1.03)
+}
+
 .titulo-pelicula {
     padding-top: 20px;
     font-size: 20px;
     font-weight: bold;
+}
+
+.derecha {
+  text-align: right;
+}
+
+.card-body {
+    height: 100% !important;
+}
+
+.tamañoImg2 {
+    height: 450px;
+    border: white solid 2px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+
+    
+}
+.likes {
+    color: white;
+    margin-bottom: 0 !important;
+}
+
+.card-title {
+    color:white !important
+}
+
+.card {
+    background-color: transparent !important;
+    border: none !important
+}
+
+.formPendiente {
+    text-align: center;
+}
+
+.divPendiente {
+    display: flex;
+    justify-content: center;
 }
