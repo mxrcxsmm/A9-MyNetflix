@@ -8,11 +8,15 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     exit();
 }
 
-// Obtener todos los usuarios
-$sql_all = "SELECT id_usuario, nombre, apellidos, correo, estado_cuenta FROM Usuario";
-$stmt_all = $pdo->prepare($sql_all);
-$stmt_all->execute();
-$usuarios = $stmt_all->fetchAll(PDO::FETCH_ASSOC);
+// Obtener la ID del usuario actual
+$id_usuario_actual = $_SESSION['id_usuario'];
+
+// Obtener todos los usuarios excepto el usuario actual
+$sql = "SELECT id_usuario, nombre, apellidos, correo, estado_cuenta, id_rol FROM Usuario WHERE id_usuario != :id_usuario";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':id_usuario', $id_usuario_actual);
+$stmt->execute();
+$usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +44,7 @@ $usuarios = $stmt_all->fetchAll(PDO::FETCH_ASSOC);
                     <th>Apellidos</th>
                     <th>Correo</th>
                     <th>Estado</th>
+                    <th>Rol</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -51,12 +56,26 @@ $usuarios = $stmt_all->fetchAll(PDO::FETCH_ASSOC);
                         <td><?= htmlspecialchars($usuario['correo']) ?></td>
                         <td><?= htmlspecialchars($usuario['estado_cuenta']) ?></td>
                         <td>
+                            <?php
+                            // Mostrar el rol del usuario
+                            if ($usuario['id_rol'] == 1) {
+                                echo 'Administrador';
+                            } elseif ($usuario['id_rol'] == 2) {
+                                echo 'Cliente';
+                            } else {
+                                echo 'Desconocido';
+                            }
+                            ?>
+                        </td>
+                        <td>
                             <form action="../proc/proc_admin.php" method="POST" style="display:inline;">
                                 <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">
                                 <?php if ($usuario['estado_cuenta'] == 'pendiente'): ?>
                                     <button type="submit" name="validar" class="btn btn-success">Aprobar</button>
-                                <?php else: ?>
+                                <?php elseif ($usuario['id_rol'] != 1): // Verificar si no es un admin ?>
                                     <button type="submit" name="desactivar" class="btn btn-danger">Desactivar</button>
+                                <?php else: ?>
+                                    <button type="button" class="btn btn-secondary" disabled>Inhabilitar</button>
                                 <?php endif; ?>
                             </form>
                         </td>
