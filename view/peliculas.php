@@ -35,7 +35,7 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body class="fondoPeliculaAdmin">
-    <div class="container mt-5 table-container">
+    <div class="container table-container">
         <h2 class="catalogo">Catálogo de Películas</h2>
 
         <?php if (isset($_GET['mensaje'])): ?>

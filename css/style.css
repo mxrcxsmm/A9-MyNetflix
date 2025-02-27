@@ -22,11 +22,12 @@ body {
 }
 
 .catalogo {
-    padding-top: 30px !important;
+    padding-top: 40px !important;
     color: white !important;
     text-decoration: none !important;
     padding: 5px;
     text-align: center;
+    font-size:50px
 }
 
 body * {

@@ -26,7 +26,7 @@ $usuarios = $stmt_all->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body class="fondoPeliculaAdmin">
     <div class="container mt-5">
-        <h2 class="catalogo">Administración de Usuarios</h2>
+        <h1 class="catalogo">Administración de Usuarios</h1>
 
         <div class="mb-3 text-end">
             <a href="peliculas.php" class="btn btn-primary">Películas</a>
