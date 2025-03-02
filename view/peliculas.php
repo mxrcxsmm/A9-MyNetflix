@@ -54,7 +54,7 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
 
-        <form id="searchForm" class="mb-3" method="POST" action="peliculas.php">
+        <form id="searchForm" class="mb-3" method="POST" action="../proc/proc_peliculas.php">
             <div class="input-group">
                 <input type="text" name="titulo" class="form-control" placeholder="Buscar por título...">
                 <input type="text" name="actor" class="form-control" placeholder="Buscar por actor...">
