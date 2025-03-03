@@ -18,6 +18,12 @@ function toggleCorazon(contenedor) {
         return; // Salir de la función si el usuario no está autenticado
     }
 
+    ruta = 'proc/proc_like.php';
+
+    if (window.location.href.includes('detalle_pelicula.php')) {
+        ruta = '../proc/proc_like.php';
+    }
+
     // Si el usuario está autenticado, continuar con la lógica de like
     contenedor.classList.toggle('active'); // Alternar la clase 'active'
     
@@ -25,7 +31,7 @@ function toggleCorazon(contenedor) {
 
     console.log('Enviando datos:', { peliculaId, usuarioId });
 
-    fetch('proc/proc_like.php', {
+    fetch(ruta, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
