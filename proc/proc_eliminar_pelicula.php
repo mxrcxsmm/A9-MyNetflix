@@ -29,6 +29,12 @@ if (isset($_POST['id_pelicula'])) {
         $stmt_delete_genres->bindParam(':id_pelicula', $id_pelicula);
         $stmt_delete_genres->execute();
 
+        // Eliminar los registros de personal asociados a la película
+        $sql_delete_personal = "DELETE FROM int_personal_pelicula WHERE id_pelicula = :id_pelicula";
+        $stmt_delete_personal = $pdo->prepare($sql_delete_personal);
+        $stmt_delete_personal->bindParam(':id_pelicula', $id_pelicula);
+        $stmt_delete_personal->execute();
+
         // Luego, eliminar la película
         $sql_delete = "DELETE FROM pelicula WHERE id_pelicula = :id_pelicula";
         $stmt_delete = $pdo->prepare($sql_delete);
@@ -55,4 +61,4 @@ if (isset($_POST['id_pelicula'])) {
         echo "Error al eliminar la película: " . $e->getMessage();
     }
 }
-?> 
+?>

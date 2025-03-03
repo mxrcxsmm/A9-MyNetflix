@@ -53,7 +53,7 @@ function handlePortadaClick(contenedor) {
             cancelButtonText: 'Cerrar'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = 'login.php'; // Redirigir a la página de inicio de sesión
+                window.location.href = 'view/login.php'; // Redirigir a la página de inicio de sesión
             }
         });
         return; // Salir de la función si el usuario no está autenticado

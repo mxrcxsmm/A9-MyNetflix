@@ -34,19 +34,23 @@ if (isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Película</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css"> <!-- Asegúrate de que este archivo exista -->
 </head>
-<body>
+<body class="fondoRegistroInicioSesion"> <!-- Clase para el fondo, similar a otras páginas -->
     <div class="container mt-5">
-        <h2>Editar Película</h2>
-        <form action="../proc/proc_editar_pelicula.php" method="POST">
+        <br>
+        <h1 class="text-center">Editar Película</h1>
+        <form class="estilosForm" action="../proc/proc_editar_pelicula.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id_pelicula" value="<?= htmlspecialchars($pelicula['id_pelicula']) ?>">
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título</label>
                 <input type="text" class="form-control" name="titulo" value="<?= htmlspecialchars($pelicula['titulo']) ?>" required>
             </div>
             <div class="mb-3">
-                <label for="portada" class="form-label">Portada</label>
-                <input type="text" class="form-control" name="portada" value="<?= htmlspecialchars($pelicula['portada']) ?>" required>
+                <label for="portada" class="form-label">Portada (subir archivo)</label>
+                <input type="file" class="form-control" name="portada" accept="image/*">
+                <p>Portada actual:</p>
+                <img src="../img/<?= htmlspecialchars($pelicula['portada']) ?>" alt="Portada actual" style="width: 100px">
             </div>
             <div class="mb-3">
                 <label for="sinopsis" class="form-label">Sinopsis</label>

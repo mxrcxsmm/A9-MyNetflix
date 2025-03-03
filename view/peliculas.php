@@ -1,24 +1,33 @@
 <?php
-session_start();
 include_once '../conexion.php'; // Asegúrate de que la conexión a la base de datos esté configurada correctamente
 
-// Verificar si el usuario es admin
-if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
-    header("Location: login.php"); // Redirigir si no es admin
-    exit();
-}
+// Inicializar la variable de películas
+$peliculas = [];
 
-// Obtener todas las películas inicialmente
-$sql = "SELECT p.id_pelicula, p.titulo, p.portada, p.sinopsis, p.ano_estreno, p.nacionalidad,
-            (SELECT GROUP_CONCAT(g.nombre_genero) FROM int_genero_pelicula igp 
-             JOIN genero g ON igp.id_genero = g.id_genero 
-             WHERE igp.id_pelicula = p.id_pelicula) AS generos,
-            (SELECT COUNT(*) FROM likes_pelicula l WHERE l.id_pelicula = p.id_pelicula) AS total_likes
-        FROM pelicula p
-        ORDER BY p.titulo"; // Cambia a ORDER BY total_likes si deseas ordenar por likes
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Verificar si se ha enviado el formulario de búsqueda
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    include_once '../proc/proc_peliculas.php'; // Incluir el archivo que maneja la búsqueda
+} else {
+    // Si no se ha enviado el formulario, puedes cargar todas las películas o dejarlo vacío
+    $sql = "SELECT p.id_pelicula, 
+                   p.titulo, 
+                   p.portada, 
+                   p.sinopsis, 
+                   p.ano_estreno, 
+                   p.nacionalidad,
+                   GROUP_CONCAT(g.nombre_genero) AS generos,
+                   COUNT(l.id_pelicula) AS total_likes
+            FROM pelicula p
+            LEFT JOIN int_genero_pelicula igp ON p.id_pelicula = igp.id_pelicula
+            LEFT JOIN genero g ON igp.id_genero = g.id_genero
+            LEFT JOIN likes_pelicula l ON p.id_pelicula = l.id_pelicula
+            GROUP BY p.id_pelicula
+            ORDER BY p.titulo";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +45,7 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body class="fondoPeliculaAdmin">
     <div class="container table-container">
+        <br>
         <h2 class="catalogo">Catálogo de Películas</h2>
 
         <?php if (isset($_GET['mensaje'])): ?>
@@ -54,7 +64,7 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
 
-        <form id="searchForm" class="mb-3" method="POST" action="../proc/proc_peliculas.php">
+        <form id="searchForm" class="mb-3" method="POST">
             <div class="input-group">
                 <input type="text" name="titulo" class="form-control" placeholder="Buscar por título...">
                 <input type="text" name="actor" class="form-control" placeholder="Buscar por actor...">
@@ -135,20 +145,6 @@ $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
             });
         }
-
-        $(document).ready(function() {
-            $('#searchForm').on('submit', function(e) {
-                e.preventDefault(); // Evitar el envío normal del formulario
-                $.ajax({
-                    type: 'POST',
-                    url: '../proc/proc_peliculas.php', // Cambia esto a la URL que maneje la búsqueda
-                    data: $(this).serialize(), // Serializa los datos del formulario
-                    success: function(response) {
-                        $('#peliculasTable tbody').html(response); // Actualiza la tabla con los resultados
-                    }
-                });
-            });
-        });
     </script>
 </body>
 

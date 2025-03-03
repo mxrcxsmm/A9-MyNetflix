@@ -16,11 +16,13 @@ if (!isset($_SESSION['id_rol']) || $_SESSION['id_rol'] != 1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Añadir Nueva Película</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="fondoRegistroInicioSesion">
     <div class="container mt-5">
-        <h2>Añadir Nueva Película</h2>
-        <form action="../proc/proc_crear_pelicula.php" method="POST" enctype="multipart/form-data">
+        <br>
+        <h1 class="text-center">Crear Nueva Película</h1>
+        <form class="estilosForm" action="../proc/proc_crear_pelicula.php" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título</label>
                 <input type="text" class="form-control" name="titulo" required>

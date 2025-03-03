@@ -30,6 +30,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body class="fondoPeliculaAdmin">
     <div class="container mt-5">
+        <br>
         <h1 class="catalogo">Administración de Usuarios</h1>
 
         <div class="mb-3 text-end">
@@ -62,8 +63,6 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 echo 'Administrador';
                             } elseif ($usuario['id_rol'] == 2) {
                                 echo 'Cliente';
-                            } else {
-                                echo 'Desconocido';
                             }
                             ?>
                         </td>
@@ -71,11 +70,11 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <form action="../proc/proc_admin.php" method="POST" style="display:inline;">
                                 <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">
                                 <?php if ($usuario['estado_cuenta'] == 'pendiente'): ?>
-                                    <button type="submit" name="validar" class="btn btn-success">Aprobar</button>
+                                    <button type="submit" name="validar" class="btn btn-success btn-admin">Aprobar</button>
                                 <?php elseif ($usuario['id_rol'] != 1): // Verificar si no es un admin ?>
-                                    <button type="submit" name="desactivar" class="btn btn-danger">Desactivar</button>
+                                    <button type="submit" name="desactivar" class="btn btn-danger btn-admin">Desactivar</button>
                                 <?php else: ?>
-                                    <button type="button" class="btn btn-secondary" disabled>Inhabilitar</button>
+                                    <button type="button" class="btn btn-secondary btn-admin" disabled>Inhabilitar</button>
                                 <?php endif; ?>
                             </form>
                         </td>
