@@ -3,7 +3,7 @@
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-  }
+}
 
 body {
     background-color: #161616 !important;
@@ -12,10 +12,35 @@ body {
     padding: 0;
 }
 
+.img-fluid {
+    height: 75px;
+}
+
+.enlace {
+    color: white;
+    text-decoration: none !important;
+}
+
+.catalogo {
+    color: white !important;
+    text-decoration: none !important;
+    padding: 5px;
+    text-align: center;
+    font-size:50px
+}
+
 body * {
     color: white;
 }
 
+.likes {
+    color: white;
+    margin-bottom: 0 !important;
+}
+
+.card-body {
+    height: 100% !important;
+}
 
 .header-index {
     position: relative;
@@ -25,7 +50,8 @@ body * {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: white; /* Asegura que el texto sea visible */
+    color: white;
+    /* Asegura que el texto sea visible */
 }
 
 .header-index::before {
@@ -39,84 +65,315 @@ body * {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.9; /* Ajusta el nivel de transparencia de la imagen */
-    
+    opacity: 0.9;
+    /* Ajusta el nivel de transparencia de la imagen */
     /* Aplicar un degradado de transparencia */
     -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-    
-    z-index: -1; /* Asegura que la imagen esté detrás del contenido */
+    z-index: -1;
+    /* Asegura que la imagen esté detrás del contenido */
 }
 
-  .navbar {
+.navbar {
     align-items: flex-start !important;
     --bs-navbar-padding-y: 1.5rem !important;
-  }
+}
 
-
-  .navbar-expand-lg {
+.navbar-expand-lg {
     justify-content: flex-start !important;
+}
 
-  }
-
-  .logo {
-    width: 120px;
+.logo {
+    width: 130px;
     height: 70px;
     margin-left: 1rem;
-  }
+}
 
-  .titulo-index {
+.titulo-index {
     font-size: 3vw;
     font-weight: bold;
     text-shadow: 6px 6px 0px red;
-  }
+}
 
-  .btn {
+.btn {
     --bs-btn-font-size: 18px !important;
-  }
+}
 
-  #titulo-index {
-    margin:0 !important;
-  }
+#titulo-index {
+    margin: 0 !important;
+}
 
-  .formRegistro {
-    background-color: rgba(18, 18, 18, 0.8); /* Negro semitransparente */
+.formRegistro {
+    background-color: rgba(18, 18, 18, 0.8);
+    /* Negro semitransparente */
     padding: 40px !important;
     border-radius: 10px;
     margin-top: 20px;
-  }
+}
 
-  .fondoRegistroInicioSesion {
+.fondoRegistroInicioSesion,
+.fondoPeliculaAdmin {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(../img/fondoM&M.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-  }
+}
 
-  .mt-5 {
+.table-container {
+    width: calc(100% - 40px) !important;
+    /* Ajusta el ancho del contenedor si es necesario */
+    margin: 20px auto;
+    /* Centrar el contenedor */
+}
+
+.btn-group {
+    display: flex;
+    gap: 5px;
+    /* Espacio entre los botones */
+}
+
+.mt-5 {
     margin-top: 0 !important;
-  }
+}
 
-  .logo2 {
+.logo2 {
     width: 180px;
     height: 100px;
-  }
+}
 
-  input {
+input {
     background: transparent !important;
-  }
+}
 
-  input * {
-    color:white !important;
-  }
-
-  input::placeholder {
+input * {
     color: white !important;
-  }
-  
+}
+
+input::placeholder {
+    color: white !important;
+}
+
 .headerRegistro {
-  height:15vh; 
-  margin-left: 5vw; 
-  align-items: center;
-  display: flex;
+    height: 15vh;
+    align-items: center;
+    display: flex;
+}
+
+.form-control {
+    color: white !important;
+}
+
+.error {
+    color: red;
+}
+
+.corazon {
+    width: 20px;
+    height: 20px;
+    fill: transparent;
+    stroke: #FF0000;
+    /* Borde del corazón en rojo cuando está desactivado */
+    stroke-width: 2;
+    /* Ancho del borde */
+    transition: fill 0.4s, stroke 0.4s;
+    /* Transición para el borde */
+}
+
+.derecha {
+    text-align: right;
+}
+
+/* Corazón activo */
+.contenedor.active .corazon {
+    fill: #FF0000; /* Corazón rojo al activarse */
+    stroke: #FF0000; /* Mantener el borde rojo cuando está activado */
+}
+
+/* Efecto hover solo cuando no está activo */
+.contenedor:hover .corazon {
+    fill: #ff000085; /* Corazón rojo al pasar el mouse */
+    stroke: #ff000085; /* Mantener el borde rojo al pasar el mouse */
+}
+
+/* Asegurarse de que no haya efecto hover cuando está activo */
+.contenedor.active:hover .corazon {
+    fill: #FF0000; /* Mantener el color rojo */
+    stroke: #FF0000; /* Mantener el borde rojo */
+}
+
+.tamañoImg {
+    height: 400px;
+    width: 100%;
+
+    border-radius: 10px;
+    border: 2px solid white;
+    transition: transform 0.3s;
+    /* Transición suave para el zoom */
+}
+
+.tamañoImg2 {
+    height: 450px;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid white;
+    transition: transform 0.3s;
+
+}
+
+.tamañoImg3 {
+    height: 450px;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid white;
+
+}
+
+.centrarDatos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 22px
+}
+
+
+.tamañoImg:hover {
+    transform: scale(1.05);
+    /* Aumentar el tamaño al pasar el mouse */
+}
+
+.tamañoImg2:hover {
+    transform: scale(1.03);
+}
+
+.titulo-pelicula {
+    padding-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.text-left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ano {
+    margin-left: 1rem;
+    width: 120px;
+}
+
+.titulo {
+    width: 200px;
+}
+
+
+/* Estilos para la tabla de películas */
+
+.table {
+    width: 100% !important;
+    /* Asegúrate de que la tabla ocupe el 100% del ancho */
+    background-color: transparent;
+    /* Sin color de fondo */
+    border-collapse: collapse;
+    /* Colapsar bordes para un mejor aspecto */
+    table-layout: auto;
+    /* Permitir que las columnas se ajusten automáticamente */
+    font-size: 18px;
+}
+
+.container.mt-5.table-container {
+    margin-left: 20px !important;
+    /* Margen a la izquierda de 20px */
+    width: 100% !important;
+    /* Ocupar el 100% del ancho */
+}
+
+.sinopsis {
+    text-align: justify;
+}
+
+.tituloPelicula {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.btnIndex {
+    text-align: center;
+}
+
+.table th,
+.table td {
+    background-color: transparent;
+    padding: 8px;
+    /* Ajustar el padding para que se vea mejor */
+    text-align: left;
+    /* Alinear el texto a la izquierda */
+    color: white;
+    /* Color de texto blanco para mejor visibilidad */
+}
+
+.table th {
+    text-align: left;
+    /* Alinear texto a la izquierda en los encabezados */
+}
+
+.table img {
+    max-width: 100%;
+    /* Asegurarse de que las imágenes no excedan el ancho de la celda */
+    height: auto;
+    /* Mantener la proporción de la imagen */
+}
+
+
+/* Estilos para la lista de géneros */
+
+.lista-generos {
+    list-style-type: none;
+    /* Quitar los puntos de la lista */
+    padding: 0;
+    /* Eliminar el padding por defecto */
+    margin: 0;
+    /* Eliminar el margen por defecto */
+    color: white;
+    /* Color del texto de los géneros */
+}
+
+.card-title {
+    color: white !important;
+}
+
+.card {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.formPendiente {
+    text-align: center;
+}
+
+.divPendiente {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-admin {
+    width: 120px;
+}
+
+textarea, select {
+    background-color: transparent !important;
+}
+
+.estilosForm {
+    font-size: 24px;
 }
