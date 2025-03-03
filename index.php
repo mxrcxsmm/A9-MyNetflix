@@ -53,15 +53,15 @@ include_once 'proc/proc_index.php';
     <?php
 
     // Si no hay usuario logueado, mostrar el top 5 y todas las películas
-    if (!isset($_SESSION['estado_cuenta'])):
+    if (!isset($_SESSION['estado_cuenta']) || $_SESSION['estado_cuenta'] == 'aprobada'):
     ?>
         <div class="container-fluid mt-4">
             <h1 class="text-center">TOP 5 PELÍCULAS</h1>
             <br>
             <div class="row justify-content-center">
                 <?php foreach ($top5 as $pelicula): ?>
-                    <div class="col-md-2 text-center">
-                        <a href="view/detalle_pelicula.php?id=<?= htmlspecialchars($pelicula['id_pelicula']) ?>">
+                    <div class="col-md-2 text-center" data-pelicula-id="<?= htmlspecialchars($pelicula['id_pelicula']) ?>" data-usuario-id="<?= isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : '' ?>" onclick="handlePortadaClick(this)">
+                        <a href="#">
                             <img class="tamañoImg" src="img/<?= htmlspecialchars($pelicula['portada']) ?>" alt="<?= htmlspecialchars($pelicula['titulo']) ?>" class="img-fluid">
                         </a>
                         <p class="titulo-pelicula"> <?= htmlspecialchars($pelicula['titulo']) ?> </p>
@@ -77,41 +77,14 @@ include_once 'proc/proc_index.php';
                 <?php foreach ($peliculas as $pelicula): ?>
                     <div class="col-md-3 mb-4">
                         <div class="card">
-                            <img class="tamañoImg2" src="img/<?= htmlspecialchars($pelicula['portada']) ?>" class="card-img-top" alt="<?= htmlspecialchars($pelicula['titulo']) ?>">
-                            <div class="card-body text-center">
-                                <h5 class="card-title"> <?= htmlspecialchars($pelicula['titulo']) ?> </h5>
-                                <div class="derecha contenedor" onclick="toggleCorazon(this)">
-                                    <p class="likes">
-                                        <?= htmlspecialchars($pelicula['total_likes']) ?>
-                                        <svg class="corazon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                        </svg>
-                                    </p>
-                                </div>
+                            <div class="portada" data-pelicula-id="<?= htmlspecialchars($pelicula['id_pelicula']) ?>" data-usuario-id="<?= isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : '' ?>" onclick="handlePortadaClick(this)">
+                                <img class="tamañoImg2" src="img/<?= htmlspecialchars($pelicula['portada']) ?>" class="card-img-top" alt="<?= htmlspecialchars($pelicula['titulo']) ?>">
                             </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-
-    <?php
-    // Si el usuario ha iniciado sesión y su cuenta está aprobada, mostrar solo el catálogo de películas
-    elseif (isset($_SESSION['estado_cuenta']) && $_SESSION['estado_cuenta'] == 'aprobada'):
-    ?>
-        <div class="container mt-5">
-            <h2 class="text-center">Todas las Películas</h2>
-            <br>
-            <div class="row">
-                <?php foreach ($peliculas as $pelicula): ?>
-                    <div class="col-md-3 mb-4">
-                        <div class="card">
-                            <img class="tamañoImg2" src="img/<?= htmlspecialchars($pelicula['portada']) ?>" class="card-img-top" alt="<?= htmlspecialchars($pelicula['titulo']) ?>">
                             <div class="card-body text-center">
                                 <h5 class="card-title"> <?= htmlspecialchars($pelicula['titulo']) ?> </h5>
-                                <div class="derecha contenedor" onclick="toggleCorazon(this)">
+                                <div class="derecha contenedor <?= $pelicula['user_liked'] > 0 ? 'active' : '' ?>" data-pelicula-id="<?= htmlspecialchars($pelicula['id_pelicula']) ?>" data-usuario-id="<?= $_SESSION['id_usuario'] ?>" onclick="toggleCorazon(this)">
                                     <p class="likes">
-                                        <?= htmlspecialchars($pelicula['total_likes']) ?>
+                                        <span class="likes-count"><?= htmlspecialchars($pelicula['total_likes']) ?></span>
                                         <svg class="corazon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                                         </svg>

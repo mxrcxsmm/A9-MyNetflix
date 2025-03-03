@@ -45,12 +45,14 @@ if (!$pelicula) {
 </head>
 <body class="fondoPeliculaAdmin">
     <div class="container mt-5">
-        <h2 class="tituloPelicula"><?= htmlspecialchars($pelicula['titulo']) ?></h2>
+        <br>
+        <h1 class="tituloPelicula"><?= htmlspecialchars($pelicula['titulo']) ?></h1>
+        <br>
         <div class="row">
             <div class="col-md-4 text-center">
-                <img src="../img/<?= htmlspecialchars($pelicula['portada']) ?>" alt="<?= htmlspecialchars($pelicula['titulo']) ?>" class="img-fluid" style="max-width: 100%; height: auto;">
+                <img class="tamañoImg3" src="../img/<?= htmlspecialchars($pelicula['portada']) ?>" alt="<?= htmlspecialchars($pelicula['titulo']) ?>" class="img-fluid" style="max-width: 100%; height: auto;">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 centrarDatos">
                 <p class="sinopsis"><strong>Sinopsis:</strong> <?= htmlspecialchars($pelicula['sinopsis']) ?></p>
                 <p><strong>Año de Estreno:</strong> <?= htmlspecialchars($pelicula['ano_estreno']) ?></p>
                 <p><strong>Género:</strong>

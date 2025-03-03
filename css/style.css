@@ -184,15 +184,28 @@ input::placeholder {
     text-align: right;
 }
 
+/* Corazón activo */
 .contenedor.active .corazon {
-    fill: #FF0000;
-    /* Corazón rojo al activarse */
-    stroke: #FF0000;
-    /* Mantener el borde rojo cuando está activado */
+    fill: #FF0000; /* Corazón rojo al activarse */
+    stroke: #FF0000; /* Mantener el borde rojo cuando está activado */
+}
+
+/* Efecto hover solo cuando no está activo */
+.contenedor:hover .corazon {
+    fill: #ff000085; /* Corazón rojo al pasar el mouse */
+    stroke: #ff000085; /* Mantener el borde rojo al pasar el mouse */
+}
+
+/* Asegurarse de que no haya efecto hover cuando está activo */
+.contenedor.active:hover .corazon {
+    fill: #FF0000; /* Mantener el color rojo */
+    stroke: #FF0000; /* Mantener el borde rojo */
 }
 
 .tamañoImg {
     height: 400px;
+    width: 100%;
+
     border-radius: 10px;
     border: 2px solid white;
     transition: transform 0.3s;
@@ -200,12 +213,29 @@ input::placeholder {
 }
 
 .tamañoImg2 {
-    height: 500px;
+    height: 450px;
+    width: 100%;
     border-radius: 10px;
     border: 2px solid white;
     transition: transform 0.3s;
 
 }
+
+.tamañoImg3 {
+    height: 450px;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid white;
+
+}
+
+.centrarDatos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 22px
+}
+
 
 .tamañoImg:hover {
     transform: scale(1.05);
